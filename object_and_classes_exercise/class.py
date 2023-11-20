@@ -5,12 +5,16 @@ class Class:
         self.students = []
         self.grades = []
 
-    def add_student(self, name: str, grade: float):
+    def add_student(self, name: str, grade: float) -> None:
         if Class.__students_count > len(self.students):
-            pass
+            self.students.append(name)
+            self.grades.append(grade)
 
-    def get_average_grade(self):
-        pass
+    def get_average_grade(self) -> str:
+        average_grade = sum(self.grades) / len(self.grades)
+        return float(f'{average_grade:.2f}')
 
     def __repr__(self):
-        return f'The students in {self.name}: {self.students}. Average grade: {self.grades}'
+        students = ', '.join(self.students)
+        average_grade = self.get_average_grade()
+        return f'The students in {self.name}: {students}. Average grade: {average_grade}'
